@@ -11,15 +11,26 @@
             width: 250px;">
         Loading
         <div
-        class="fb-login-button"
-        data-max-rows="1"
-        data-size="large"
-        data-button-type="continue_with"
-        data-use-continue-as="true"
+            class="fb-login-button"
+            data-max-rows="1"
+            data-size="large"
+            data-button-type="continue_with"
+            data-use-continue-as="true"
+            onlogin="checkLoginState()"
         ></div>
     </div>
 
     <script>
+        function statusChangeCallback(response) {
+            console.log(response);
+        }
+
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+        }
+
         window.fbAsyncInit = function() {
             FB.init({
                 appId      : '998414110364379',
